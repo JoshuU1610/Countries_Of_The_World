@@ -13,14 +13,21 @@ countrysinf(data => {
         
         const myUL = document.querySelector('.cards')
         const li = document.createElement('li');
-        const languages = Object.values(country.languages).map(language => language);
-        console.log(languages);
+        console.log(country);
+        console.log('languages' in country);
+        let languages = ' ';
+        if('languages' in country){
+            languages = Object.values(country?.languages).toLocaleString();
+        } else {
+            languages = 'No tiene';
+        }
+        
 
 
         li.innerHTML = `<img src="${country.flags.svg}" alt="flag">
         <h1>${country.name.common}</h1>
         <h2>${country.name.official}</h2>
-        <p>${languages.join(', ')}</p>
+        <p>${languages}</p>
         <p>${country.capital}</p>
         <p>${country.flag}</p>`;
 
