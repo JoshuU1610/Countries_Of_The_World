@@ -9,4 +9,7 @@ function countrysinf (done) {
 
 countrysinf(data => {
     console.log(data);
+    data.forEach(country => {
+        console.log(country.flags);
+    });
 })
