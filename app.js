@@ -10,9 +10,23 @@ function countrysinf (done) {
     })
 }
 
-countrysinf(data => {
+// function countrysclim (done1, lat, lon) {
+//     const climaResponse = fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=e07ea757fc89cb3ee1352cc6930ee193`);
+
+//     climaResponse
+//     .then(response => response.jason())
+//     .then(data1 => {
+//         done1(data1)
+//     })
+// }
+
+// countrysclim(async data1, lat, lon => {
+//     console.log(data1);
+// })
+
+countrysinf(async data => {
     console.log(data);
-    data.forEach(country => {
+    data.forEach(async country => {
         
         
         const li = document.createElement('li');
@@ -24,15 +38,21 @@ countrysinf(data => {
         } else {
             languages = 'Dont Have';
         }
+        let lat = country.latlng[0];
+        let lon = country.latlng[1];
+        console.log(lat);
+        console.log(lon);
         
-
+        console.log(clima);
 
         li.innerHTML = `<img src="${country.flags.svg}" alt="flag">
         <h1>${country.name.common}</h1>
         <h2>${country.name.official}</h2>
         <p><span>Languages:</span> ${languages}</p>
         <p><span>Capital:</span> ${country.capital}</p>
-        <p><span>Code:</span> ${country.flag}</p>`;
+        <p><span>Code:</span> ${country.flag}</p>
+        <p>clima: ${clima}</p>`;
+        
 
 
         li.classList.add('card');
@@ -53,7 +73,7 @@ inputSearch.addEventListener('keyup', e => {
         const h1 = elementos[i].getElementsByTagName("h1")[0];
         const textoH1 = h1.textContent.toLowerCase();
         let coincide = true;
-    
+        
         for (let j = 0; j < valorFiltro.length; j++) {
           if (textoH1[j] !== valorFiltro[j]) {
             coincide = false;
@@ -67,6 +87,8 @@ inputSearch.addEventListener('keyup', e => {
           elementos[i].style.display = "none";
         }
       }
+
+      
 
     if(inputSearch.value === '' || regex.test(inputSearch)){
         for (let i = 0; i < elementos.length; i++){
