@@ -93,6 +93,7 @@ body{
     align-items: center;
     color: white;
     margin-bottom: 1rem;
+    gap: 1rem;
 }
 
 .card img{
@@ -127,6 +128,131 @@ body{
     height: auto;
 }
 
+.card button {
+  display: block;
+  height: 57px;
+  width: 90%;
+  border-radius: 4px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #fff;
+  font-size: 18px;
+  overflow: hidden;
+  transition: all 500ms ease;
+  border: 2px solid #6ae220;
+  margin-bottom: 40px;
+  z-index: 0;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.card button::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    background-color: #6ae220;
+    transition: all 500ms ease;
+    z-index: -1;
+  }
+
+.card .btn--2:hover {
+    background-color: #6ae220;
+    box-shadow: 0 0 10px #6ae220, 0 0 20px #6ae220, 0 0 20px #6ae220;
+    color: #e8e8e8;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s;
+}
+
+.modal-show{
+    opacity: 1;
+    pointer-events: unset;
+    transition: opacity .6s;
+}
+
+.modal-container{
+    width: 90%;
+    background-color: rgba(51, 102, 102, 0.783);
+    color: white;
+    max-width: 600px;
+    max-height: 95%;
+    border-radius: 6px;
+    padding: 3em 2.5em;
+    margin: auto;
+    display: grid;
+    grid-auto-columns: 100%;
+    place-items: center;
+    gap: 1em;
+}
+
+.modal-container img{
+    width: 70%;
+    height: 68%;
+    border-radius: 2rem;
+}
+
+.modal-container h1{
+    font-size: 1.5rem;
+}
+
+.modal-container h2{
+    font-size: 1rem;
+}
+
+.modal-container p{
+    font-size: 0.7rem;
+}
+
+.modal-container button{
+    margin: 1rem;
+    display: block;
+    height: 57px;
+    width: 90%;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background-color: transparent;
+    color: #fff;
+    font-size: 18px;
+    overflow: hidden;
+    transition: all 500ms ease;
+    border: 2px solid #e22020;
+    margin-bottom: 40px;
+    z-index: 0;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.modal-container button::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    background-color: #e22020;
+    transition: all 500ms ease;
+    z-index: -1;
+  }
+
+  .modal-container .btn--3:hover {
+    background-color: #e22020;
+    box-shadow: 0 0 10px #e22020, 0 0 20px #e22020, 0 0 20px #e22020;
+    color: #e8e8e8;
+}
+
 .svg{
     width: 1rem;
     color: white;
@@ -135,6 +261,8 @@ body{
 .hide{
     display: none;
 }
+
+
 
 @media (min-width: 768px) {
     #search button {
@@ -150,5 +278,22 @@ body{
 
     .title h1{
         font-size: 2rem;
+    }
+
+    .cards{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card{
+        width: calc(40% - 1rem);
+        margin: 1rem;
+        align-items: center;
+    }
+
+    .card button{
+        width: 50%;
     }
 }
