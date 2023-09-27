@@ -1,14 +1,20 @@
 const inputSearch = document.getElementById('Input-Search')
 const myUL = document.querySelector('.cards');
 const modal = document.querySelector('.modal')
-
+const loader = document.querySelector('.centrado')
+console.log(loader);
 function countrysinf (done) {
     const results = fetch("https://restcountries.com/v3.1/all");
     results
     .then(response => response.json())
     .then(data => {
         done(data);
+        
+        loader.style.display = 'none';
     })
+    .catch(error => {
+        loader.style.display = 'none';
+      });
 }
 
 const infoclim = async (a , b) => {
@@ -17,9 +23,11 @@ const infoclim = async (a , b) => {
         const data = await climaResponse.json();
         const temp = parseInt(data.main.temp);
         console.log(temp);
+        loader.style.display = 'none';
         return temp;
     } catch (error) {
         console.error(error);
+        loader.style.display = 'none';
     }
 }
 
@@ -118,6 +126,7 @@ inputSearch.addEventListener('keyup', e => {
 })
 
 document.addEventListener('click', async e => {
+    loader.style.display = 'fixed';
     try{
         e.preventDefault();
     const target = e.target;
@@ -127,6 +136,7 @@ document.addEventListener('click', async e => {
     
     
     if (boton) {
+        
         const padre = target.parentElement;
         const index = parseInt(padre.getAttribute('index'));
         countrysinf(async data => {
@@ -144,6 +154,7 @@ document.addEventListener('click', async e => {
             const temp = await infoclim(lat,lon);
             
             const clima = temp - 273.15;
+            const clima2 = Math.trunc(clima);
             console.log(temp);
 
 
@@ -158,12 +169,13 @@ document.addEventListener('click', async e => {
             <p><span>Languages:</span> ${languages}</p>
             <p><span>Capital:</span> ${data[index].capital}</p>
             <p><span>Code:</span> ${data[index].flag}</p>
-            <p>temperatura: ${clima} °C</p>
+            <p>temperatura: ${clima2} °C</p>
             <button class="btn--3">close</button>
             `;
 
             div.classList.add('modal-container');
             modal.appendChild(div);
+            loader.style.display = 'none';
         })
         modal.classList.add('modal-show')
     } else if (boton2){
