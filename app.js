@@ -148,6 +148,14 @@ document.addEventListener('click', async e => {
                 languages = 'Dont Have';
             }
 
+            let capital = ' ';
+
+            if('capital' in data[index]){
+                capital = data[index].capital;
+            } else {
+                capital = 'Dont Have'
+            }
+
             let lat = data[index].latlng[0];
             let lon = data[index].latlng[1];
 
@@ -167,8 +175,9 @@ document.addEventListener('click', async e => {
             <h1>${data[index].name.common}</h1>
             <h2>${data[index].name.official}</h2>
             <p><span>Languages:</span> ${languages}</p>
-            <p><span>Capital:</span> ${data[index].capital}</p>
-            <p><span>Code:</span> ${data[index].flag}</p>
+            <p><span>Capital:</span> ${capital}</p>
+            <p><span>Code:</span> ${data[index].cca2}</p>
+            <p><span>Population:</span> ${data[index].population}</p>
             <p>temperatura: ${clima2} °C</p>
             <button class="btn--3">close</button>
             `;
